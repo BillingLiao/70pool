@@ -4,6 +4,7 @@ import com.ant.entity.Tstimate;
 import com.ant.webPage.service.TstimateService;
 import com.ant.webPage.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/tstimate")
+@CrossOrigin
 public class TitimateController{
 
     @Autowired
