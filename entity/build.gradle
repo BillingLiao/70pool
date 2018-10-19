@@ -1,0 +1,5 @@
+dependencies{
+    compile project(":common")
+    compile libs.mybatisplus
+    compile libs.beanutils
+}

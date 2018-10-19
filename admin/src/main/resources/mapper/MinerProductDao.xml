@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ant.admin.dao.MinerProductDao">
+
+    <select id="selectProductList" resultType="com.ant.entity.MinerProduct">
+        SELECT
+        miner.*,product.*,c.category_name
+        FROM
+        t_miner_product miner
+        LEFT JOIN t_product product ON miner.product_id = product.product_id
+        left join t_category c on c.category_id = product.category_id
+        <where> 1=1 and miner.del_flag = 0 ${ew.sqlSegment} </where>
+    </select>
+
+    <select id="selectByProductId" resultType="com.ant.entity.MinerProduct">
+        SELECT
+        miner.*,product.*,c.category_name
+        FROM
+        t_miner_product miner
+        LEFT JOIN t_product product ON miner.product_id = product.product_id
+        left join t_category c on c.category_id = product.category_id
+        <where>miner.product_id = #{productId} and miner.del_flag = 0</where>
+    </select>
+
+</mapper>

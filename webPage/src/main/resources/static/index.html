@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+	<title>麒麟云算</title>
+	<meta name="keywords" content="麒麟云算" />
+	<meta name="description" content="麒麟云算" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="author" content="pennychen" />
+	<meta name="Copyright" content="麒麟云算" />
+	<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+	<meta http-equiv="Cache-Control" content="no-transform" />
+	<meta http-equiv="Cache-Control" content="no-siteapp" />
+	<link type="text/css" rel="stylesheet" href="css/style.css" charse="utf-8"/>
+	<!--<link type="text/css" rel="stylesheet" href="css/menu.css" charse="utf-8"/>-->
+
+	<script src="js/app.js" type="text/javascript" charset="utf-8"></script>
+
+	<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript" src="js/template-native.js"></script>
+	<script type="text/javascript" src="js/vue.min.js"></script>
+	<!--动画-->
+	<script  type="text/javascript" src="js/wow.min.js"></script>
+	<link href="css/animate.css" rel='stylesheet' type='text/css' charse="utf-8"/>
+	<script>
+		new WOW().init();
+	</script>
+
+</head>
+
+<body class="cbp-spmenu-push">
+<div id="page"  v-cloak>
+
+	<!--header-->
+    <div id="header">
+		<div class="logo">麒麟云算</div>
+	</div>
+	<!--header end-->
+
+
+	<!--横幅 begin-->
+	<div class="index_banner">
+
+		  <div id="owl-demo" class="owl-carousel">
+			  <!--<div class="item"><a href="#"><img src="images/1.jpg" alt="" /></a></div>-->
+			  <div class="item"><a href="#"><img src="images/2.png" alt="" /></a></div>
+		  </div>
+		  <!-- Owl Carousel Assets -->
+		  <link href="js/owl-carousel/owl.carousel.css" rel="stylesheet">
+		  <link href="js/owl-carousel/owl.theme.css" rel="stylesheet">
+		  <script src="js/owl-carousel/owl.carousel.js"></script>
+		  <script src="js/owl-carousel/one.js"></script>
+	</div>
+	<!--横幅 end-->
+
+
+    <!--动态滚动-->
+	<div class="run wow fadeInUp">
+		<div class="newsrun">
+			<div class="ggbox" id="marqueebox0">
+				<ul class="newsList">
+				</ul>
+			</div>
+			<script type="text/template" id="toticesList">
+				<% if(model && model.length>0){ %>
+					<% for(var i=0;i<model.length;i++) { %>
+						<li><a href="news_detail.html?toticesId=<%=model[i].toticesId%>"><%=model[i].toticesTitle%></a></li>
+					<% } %>
+				<% } %>
+			</script>
+			<script type="text/javascript">
+				$(function(){
+					$.ajax({
+						url: api + 'totices/findList',
+						type:'GET',
+						dataType:'json',
+						success:function(res){
+							if(res.code==0){
+								var data = res.toticesList;
+								$('.newsList').html(template('toticesList',{model:data}));
+							}else{
+								alert(res.msg);
+							}
+						},
+						error: function(res) {
+							alert(res.msg);
+						}
+					});
+				});
+			</script>
+			<script src="js/run.js" type="text/javascript"></script>
+		</div>
+	</div>
+	<!--动态滚动 end-->
+
+
+	<div id="cloudList"><h1 class="hot_t"><span></span>为您推荐<span></span></h1>
+
+	<!--热门-->
+	<div class="hotpro" id="cloudPage" v-cloak>
+		<div class="hotpro_con">
+	        <div class="j_list">
+				<div class="jimg"><a @click="clickBuy"><img class="lazy" v-bind:src="cloudProduct.picImg" alt="S9i云算力" /></a></div>
+				<div class="jtx">
+					<h1><a @click="clickBuy">{{cloudProduct.productName}}</a></h1>
+					<p>售价：{{cloudProduct.retailPrice}}元/T</p>
+					<p>库存：{{cloudProduct.stock}}T</p>
+				</div>
+				<div class="salary"><a @click="clickBuy">购买</a></div>
+			</div>
+			<div class="page">
+				<div class="next"><a href="mall.html">查看更多</a></div>
+			</div>
+
+
+		</div>
+	</div>
+	</div>
+	<!--热门 end-->
+	<script type="text/javascript" src="js/modules/index.js"></script>
+
+			<!--瀑布流JS-->
+			<script  type="text/javascript" src="js/pubu/jquery.lazyload.min.js"></script>
+			<script  type="text/javascript" src="js/pubu/blocksit.min.js"></script>
+			<script>
+			$(function(){
+				$("img.lazy").lazyload({
+					load:function(){
+						$('#content').BlocksIt({
+							numOfCol:1, //每行显示图片个数
+							offsetX: 0,
+							offsetY: 0
+						});
+					}
+				});
+				$(window).scroll(function(){
+						// 当滚动到最底部以上50像素时， 加载新内容
+					if ($(document).height() - $(this).scrollTop() - $(this).height()<50){
+						$('#content').BlocksIt({
+							numOfCol:1, //每行显示图片个数
+							offsetX: 0,
+							offsetY: 0
+						});
+						$("img.lazy").lazyload();
+					}
+				});
+			});
+			</script>
+			<!--end 瀑布流JS-->
+
+
+	<!--<h1 class="hot_t"><span></span>稳定收益到期收回本金<span></span></h1>-->
+
+	<!--定期-->
+	<!--<div class="pro_hot">-->
+		<!--<div class="dingqi_hot">-->
+
+		<!--</div>-->
+	<!--</div>-->
+
+	<script type="text/template" id="financialProductList">
+		<% if(model && model.length>0){ %>
+		<% for(var i=0;i<model.length;i++) { %>
+			<div class="dingqi"><a href="rent_detail.html?id=<%=model[i].productId%>">定期<%=model[i].cycle%>天<h1>年化收益<%=model[i].rewardRate%>%</h1></a></div>
+		<% } %>
+		<% } %>
+	</script>
+
+	<script type="text/javascript">
+		$(function(){
+			$.ajax({
+				url: api + 'financial/findFour',
+				type:'GET',
+				dataType:'json',
+				success:function(res){
+					if(res.code==0){
+						var data = res.financialProductList;
+						$('.dingqi_hot').html(template('financialProductList',{model:data}));
+					}else{
+						alert(res.msg);
+						console.log(res);
+					}
+				},
+				error: function(res) {
+					console.log(res);
+				}
+			});
+		});
+	</script>
+	<!-- end 定期-->
+
+
+
+	<h1 class="hot_t"><span></span>了解麒麟云算力<span></span></h1>
+
+	<!--优势-->
+	<div class="con">
+		<div class="adv_con">
+
+			<h1 class="pt"><span>——</span>麒麟云算力平台<span>——</span></h1>
+			<h2 class="fb"></h2>
+			<p class="zy">无需苦苦等待矿机到货，付费即可开始挖矿</p>
+			<p class="zy">算力自由购买 + 挖矿简单快捷 + 收益非同凡响</p>
+			<div class="adv">
+				<div class="adv_list"><img src="images/adv_1.png" alt="" /><p>24小时挖矿</p></div>
+				<div class="adv_list"><img src="images/adv_2.png" alt="" /><p>专业矿场万台机器</p></div>
+				<div class="adv_list"><img src="images/adv_3.png" alt="" /><p>平台安全可靠</p></div>
+			</div>
+
+		</div>
+	</div>
+	<!--end 优势-->
+
+
+	<h1 class="hot_t"><span></span><span></span></h1>
+
+	<!--常见问题-->
+	<div class="con">
+		<div class="faq">
+			<div class="list_box">
+
+				<h1 class="pt"><span>——</span>常见问题<span>——</span></h1>
+				<h2 class="fb"></h2>
+
+				<div class="process">
+					<div class="p_tx">
+						<h1>什么是云算力挖矿？</h1>
+						<p>传统的挖矿方式就是购买矿机，布置矿场，设置了软件即可开挖。而云算力挖矿，不难理解，是算力公司通过大量资金购置低价专业矿机，配选廉价电费的矿场，将每台专业矿机的算力分拆开来，用户通过购买算力合约，最大化的赚取相应算力所挖的虚拟货币。比起传统挖矿的优势更大，更简单。</p>
+					</div>
+				</div>
+
+				<div class="process">
+					<div class="p_tx">
+						<h1>云算力挖矿的好处？</h1>
+						<p>收益显而易见的投资手段，云算力投资是目前收益比较显著的投资手段之一， 您可以在我们的后台实实在在看到数字资产增涨， 同时可以随时提取数字资产。 云算力的收益率也是目前投资回报率较高的投资方式。 我们替您关注数字资产状况 如果您平时工作较忙没有时间关注数字资产价格也无需担心，我们的客服会提醒您数字资产的情况，您不用每时每刻盯着币价不放。 强大的技术支持团队 我们组建了专业的技术支持团队驻扎在云算力中心，确保每一台云算力矿机的正常运行，您同样可以在我们的数据中心查看您算力矿机的运转情况，有任何疑问都可以向我们的技术团队提出。 简单直接的定价 我们的定价更加简单直接，固定算力叠加的方式让您明确了解您拥有多少台矿机的算力，只需要在购买时选择您所需的算力即可。</p>
+					</div>
+				</div>
+
+				<div class="process">
+					<div class="p_tx">
+						<h1>如何购买云挖矿合约？</h1>
+						<p>选择您想购买的云挖矿合约及数量（最小单位：1份）下单，使用账户的数字货币余额支付。</p>
+					</div>
+				</div>
+
+				<div class="process">
+					<div class="p_tx">
+						<h1>云算力挖矿有哪些费用？</h1>
+						<p>购买云算力挖矿合约支付的费用，包含了购置矿机，运输矿机的费用，以及托管运输费，磨损老化费，管理维护费用等。</p>
+					</div>
+				</div>
+
+				<div class="process">
+					<div class="p_tx">
+						<h1>为什么每天的挖矿收益不一样？</h1>
+						<p>数字货币网络会定时调整一次网络挖矿难度，每个币种调整难度的周期不同，币价波动也会让电费发生波动，随着挖矿难度的增加，挖矿收益整体呈下降趋势。</p>
+					</div>
+				</div>
+
+				<div class="process">
+					<div class="p_tx">
+						<h1>云算力合约收益如何计算？</h1>
+						<p>根据f2pool鱼池PPS+模式的日理论收益及用户购买云挖矿合约的份额计算每日挖矿收益，扣除每日电费及管理费即为用户实际获得的挖矿收益。请注意：预估收益由数字货币网络实际运行计算得出，将动态变化，仅供参考。</p>
+					</div>
+				</div>
+
+				<div class="process">
+					<div class="p_tx">
+						<h1>挖矿收益什么时候发放？</h1>
+						<p>每天的挖矿收益将在次日00:00发放一次；购买合约当天的收益，按截止到次日00:00的实际挖矿时长计算发放。</p>
+					</div>
+				</div>
+
+
+			</div>
+		</div>
+	</div>
+	<!--end 常见问题-->
+
+
+
+	<!--微信-->
+	<div class="index_wx">
+		<h1>麒麟云算</h1>
+		<img src="images/wx.png" alt="" />
+		<div class="index_reg"><a href="reg.html">立即注册</a></div>
+	</div>
+	<!--end 微信-->
+
+
+
+	<!--footer-->
+	<div class="footer">
+		<div class="links"></div>
+		麒麟云算 &nbsp; All Rights Reserved. <br /><a href="http://www.miitbeian.gov.cn/">粤ICP备17090461号 </a>
+	</div>
+	<!--footer end-->
+
+
+	<!--导航-->
+	<ul class="nav_b">
+		<li><a class="icon_01" href="index.html">首页</a></li>
+		<!--<li><a class="icon_02" href="rent.html">租赁</a></li>-->
+		<li><a class="icon_03" href="mall.html">购买</a></li>
+		<li><a class="icon_05" href="personal.html">我</a></li>
+	</ul>
+
+
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>新闻-麒麟云算</title>
+	<meta name="keywords" content="麒麟云算" />
+	<meta name="description" content="麒麟云算" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="author" content="pennychen" />
+	<meta name="Copyright" content="麒麟云算" />
+	<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+	<meta http-equiv="Cache-Control" content="no-transform" />
+	<meta http-equiv="Cache-Control" content="no-siteapp" />
+	<link type="text/css" rel="stylesheet" href="css/style.css" />
+	<!--<link type="text/css" rel="stylesheet" href="css/mmenu.css" />-->
+
+	<script src="js/app.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript" src="js/vue.min.js"></script>
+	<!--动画-->
+	<script src="js/wow.min.js"></script>
+	<link href="css/animate.css" rel='stylesheet' type='text/css' />
+	<script>
+		new WOW().init();
+	</script>
+
+</head>
+
+
+
+
+<body class="cbp-spmenu-push">
+<div id="page" v-cloak>
+
+	<!--header-->
+    <div id="header">
+		<div class="logo">最新动态</div>
+	</div>
+	<!--header end-->
+
+
+
+	<div class="de_con">
+
+		<div class="newshead">
+			<h1>{{totices.toticesTitle}}</h1>
+			<p><span>发布时间：{{totices.publishDate}}</span><span>发布人：{{totices.userName}}</span></p>
+		</div>
+
+
+		<div class="info_p" id = "contentInfo">
+
+		</div>
+
+
+
+	<!--微信-->
+	<div class="index_wx">
+		<h1>麒麟云算</h1>
+		<img src="images/wx.png" alt="" />
+		<div class="index_reg"><a href="reg.html">立即注册</a></div>
+	</div>
+	<!--end 微信-->
+
+
+
+	<!--footer-->
+	<div class="footer">
+		<div class="links"></div>
+		麒麟云算 &nbsp; All Rights Reserved. <br /><a href="http://www.miitbeian.gov.cn/">粤ICP备17090461号 </a>
+	</div>
+	<!--footer end-->
+
+
+	<!--导航-->
+	<ul class="nav_b">
+		<li><a class="icon_01" href="index.html">首页</a></li>
+		<!--<li><a class="icon_02" href="rent.html">租赁</a></li>-->
+		<li><a class="icon_03" href="mall.html">购买</a></li>
+		<li><a class="icon_05" href="personal.html">我</a></li>
+	</ul>
+
+
+</div>
+</div>
+	<script stype="text/javascript" src="js/modules/news_detail.js"></script>
+</body>
+</html>

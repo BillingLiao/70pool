@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>云算理财-麒麟云算</title>
+	<meta name="keywords" content="麒麟云算" />
+	<meta name="description" content="麒麟云算" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="author" content="pennychen" />
+	<meta name="Copyright" content="麒麟云算" />
+	<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+	<meta http-equiv="Cache-Control" content="no-transform" />
+	<meta http-equiv="Cache-Control" content="no-siteapp" />
+	<link type="text/css" rel="stylesheet" href="css/style.css" />
+	<!--<link type="text/css" rel="stylesheet" href="css/mmenu.css" />-->
+
+	<script src="js/app.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript" src="js/vue.min.js"></script>
+	<script src="js/wow.min.js"></script>
+	<link href="css/animate.css" rel='stylesheet' type='text/css' />
+	<script>
+		new WOW().init();
+	</script>
+
+</head>
+
+
+
+
+<body class="cbp-spmenu-push">
+<div id="page" v-cloak>
+
+	<!--header-->
+    <div id="header">
+		<div class="logo">云算理财</div>
+	</div>
+	<!--header end-->
+
+
+	<!--个人信息-->
+	<div class="conbox">
+
+		<div class="stats_3">
+			<h2><p>持有金额（BTC钱包）</p>{{account.btcBalance}}<a href="record_tx.html">提现</a></h2>
+			<h2><p>昨日收益（BTC）</p>+{{account.btcYesterday}}<a href="mall.html">买入</a></h2>
+		</div>
+
+		<script language="JavaScript" src="js/tab.js" type="text/javascript"></script>
+		<div class="Menubox">
+		<ul>
+			<li id="one1" onClick="setTab('one',1,2)" class="hover hover_2">持有理财</li>
+		</ul>
+		</div>
+
+		<div class="tabconbox" v-for="userFinancial in userFinancialList">
+
+			<div class="dl">
+				<h1>{{userFinancial.productName}}</h1>
+				<div class="stats_2"><h2>持有金额</h2><h2 class="date">{{userFinancial.money}}元</h2></div>
+				<div class="audit">{{userFinancial.redemptionDay}}天后赎回</div>
+				<div class="amount">累计收益： {{userFinancial.cumulativeIncome}}元</div>
+			</div>
+
+		</div>
+
+
+
+	</div>
+	<!--个人信息 end-->
+
+
+
+	<!--footer-->
+	<div class="footer">
+		<div class="links"></div>
+		麒麟云算 &nbsp; All Rights Reserved. <br /><a href="http://www.miitbeian.gov.cn/">粤ICP备17090461号 </a>
+	</div>
+	<!--footer end-->
+
+
+	<!--导航-->
+	<ul class="nav_b">
+		<li><a class="icon_01" href="index.html">首页</a></li>
+		<!--<li><a class="icon_02" href="rent.html">租赁</a></li>-->
+		<li><a class="icon_03" href="mall.html">购买</a></li>
+		<li><a class="icon_05" href="personal.html">我</a></li>
+	</ul>
+
+
+</div>
+
+<script stype="text/javascript" src="js/modules/financial.js"></script>
+</body>
+</html>

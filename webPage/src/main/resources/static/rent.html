@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>云算力租赁 - 麒麟云算</title>
+	<meta name="keywords" content="麒麟云算" />
+	<meta name="description" content="麒麟云算" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="author" content="pennychen" />
+	<meta name="Copyright" content="麒麟云算" />
+	<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+	<meta http-equiv="Cache-Control" content="no-transform" />
+	<meta http-equiv="Cache-Control" content="no-siteapp" />
+	<link type="text/css" rel="stylesheet" href="css/style.css" charse="utf-8"/>
+	<!--<link type="text/css" rel="stylesheet" href="css/mmenu.css" charse="utf-8"/>-->
+
+	<script src="js/app.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript" src="js/template-native.js"></script>
+	<!--动画-->
+	<script src="js/wow.min.js"></script>
+	<link href="css/animate.css" rel='stylesheet' type='text/css' charse="utf-8"/>
+	<script>
+		new WOW().init();
+	</script>
+
+</head>
+
+
+
+
+<body class="cbp-spmenu-push">
+<div id="page">
+
+	<!--header-->
+    <div id="header">
+		<div class="logo">云算力租赁</div>
+	</div>
+	<!--header end-->
+
+
+	<!--热门-->
+	<div class="hotpro hotpro_rent">
+		<div class="rent_con">
+
+		</div>
+		<script type="text/template" id="financialProductList">
+			<% if(model && model.length>0){ %>
+			<% for(var i=0;i<model.length;i++) { %>
+				<div class="dl">
+					<h1><a href="rent_detail.html?productId=<%=model[i].productId%>"><%=model[i].productName%></a></h1>
+					<div class="stats_2"><h2><%=model[i].rewardRate%>%<p>年化收益</p></h2><h2><%=model[i].cycle%>天<p>定期</p></h2><h2><%=model[i].thresholdAmount%><p>起投金额</p></h2></div>
+					<div class="audit"><a href="order_detail.html?productId=<%=model[i].productId%>">立即购买</a></div>
+				</div>
+			<% } %>
+			<% } %>
+		</script>
+
+		<script type="text/javascript">
+		$(function(){
+			$.ajax({
+				url: api + 'financial/findList',
+				type:'GET',
+				dataType:'json',
+				success:function(res){
+					if(res.code==0){
+						var data = res.financialProductList;
+						$('.rent_con').html(template('financialProductList',{model:data}));
+					}else{
+						alert(res.msg);
+						console.log(res);
+					}
+				},
+				error: function(res) {
+					console.log(res);
+				}
+			});
+		});
+	</script>
+	</div>
+	<!--热门 end-->
+
+
+
+
+	<!--微信-->
+	<div class="index_wx">
+		<h1>麒麟云算</h1>
+		<img src="images/wx.png" alt="" />
+	</div>
+	<!--end 微信-->
+
+
+
+	<!--footer-->
+	<div class="footer">
+		<div class="links"></div>
+		麒麟云算 &nbsp; All Rights Reserved. <br /><a href="http://www.miitbeian.gov.cn/">粤ICP备17090461号 </a>
+	</div>
+	<!--footer end-->
+
+
+	<!--导航-->
+	<ul class="nav_b">
+		<li><a class="icon_01" href="index.html">首页</a></li>
+		<!--<li><a class="icon_02" href="rent.html">租赁</a></li>-->
+		<li><a class="icon_03" href="mall.html">购买</a></li>
+		<li><a class="icon_05" href="personal.html">我</a></li>
+	</ul>
+
+
+
+</div>
+
+
+</body>
+</html>

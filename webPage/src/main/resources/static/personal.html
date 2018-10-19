@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>个人信息-麒麟云算</title>
+	<meta name="keywords" content="麒麟云算" />
+	<meta name="description" content="麒麟云算" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="author" content="pennychen" />
+	<meta name="Copyright" content="麒麟云算" />
+	<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+	<meta http-equiv="Cache-Control" content="no-transform" />
+	<meta http-equiv="Cache-Control" content="no-siteapp" />
+	<link type="text/css" rel="stylesheet" href="css/style.css" />
+	<!--<link type="text/css" rel="stylesheet" href="css/mmenu.css" />-->
+
+	<script src="js/app.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript" src="js/vue.min.js"></script>
+	<script src = "js/sweetalert.min.js" type="text/javascript" charset="utf-8"></script>
+	<!--动画-->
+	<script src="js/wow.min.js"></script>
+	<link href="css/animate.css" rel='stylesheet' type='text/css' />
+	<script>
+		new WOW().init();
+	</script>
+
+</head>
+
+
+
+
+<body class="cbp-spmenu-push">
+<div id="page" v-cloak>
+
+	<!--header-->
+    <div id="header">
+		<div class="logo">我</div>
+	</div>
+	<!--header end-->
+
+
+	<div class="head">
+		<div class="head_box">
+			<div class="head_img"><img src="images/imghead.png" /></div>
+			<h1>中午好，{{account.phone}}</h1>
+		</div>
+	</div>
+
+	<!--个人信息-->
+	<div class="conbox">
+
+		<div class="stats">
+			<div class="triangle"></div>
+			<h2><p>持有算力</p>{{account.amount}}T</h2><h2><p>BTC钱包</p>{{account.btcBalance}}</h2><h2><p>昨日收益（BTC）</p>+{{account.btcYesterday}}</h2>
+			<!--<h2><a href="financial.html">云算<br />理财</a></h2><h2><p>CNY钱包</p>{{account.cnyBalance}}</h2><h2><p>昨日收益CNY）</p>+{{account.cnyYesterday}}</h2>-->
+		</div>
+
+		<!--定期-->
+		<div class="p_menu">
+
+			<div class="pm_box"><a href="account.html">收款账号</a></div>
+			<div class="pm_box"><a href="hold.html">持有算力</a></div>
+			<!--<div class="pm_box"><a href="">保底挖矿</a></div>-->
+			<div class="pm_box"><a href="record_tx.html">我要提现</a></div>
+			<div class="pm_box"><a href="record_2.html">提现记录</a></div>
+			<div class="pm_box"><a href="record.html">交易记录</a></div>
+
+		</div>
+		<!-- end 定期-->
+
+	</div>
+	<!--个人信息 end-->
+
+
+
+	<!--footer-->
+	<div class="footer">
+		<div class="links"></div>
+		麒麟云算 &nbsp; All Rights Reserved. <br /><a href="http://www.miitbeian.gov.cn/">粤ICP备17090461号 </a>
+	</div>
+	<!--footer end-->
+
+
+	<!--导航-->
+	<ul class="nav_b">
+		<li><a class="icon_01" href="index.html">首页</a></li>
+		<!--<li><a class="icon_02" href="rent.html">租赁</a></li>-->
+		<li><a class="icon_03" href="mall.html">购买</a></li>
+		<li><a class="icon_05" href="personal.html">我</a></li>
+	</ul>
+
+
+</div>
+
+<script stype="text/javascript" src="js/modules/personal.js"></script>
+</body>
+</html>

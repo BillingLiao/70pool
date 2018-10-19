@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ant.admin.dao.PutForwardDao">
+
+    <select id="selectPutForwardList" resultType="com.ant.entity.PutForward">
+        SELECT *
+        FROM
+        t_put_forward p
+        <where> 1=1 ${ew.sqlSegment}</where>
+    </select>
+
+</mapper>

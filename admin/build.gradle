@@ -1,0 +1,12 @@
+dependencies{
+    compile project(":entity")
+    compile libs.common
+    compile libs.mysql
+    compile libs.mybatisplus
+    compile libs.durid
+    compile libs.freemarker
+    compile libs.redis
+    compile libs.shiro
+    compile libs.kaptcha
+    compile libs.joda
+}

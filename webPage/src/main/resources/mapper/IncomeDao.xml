@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.ant.webPage.dao.IncomeDao" >
+
+    <select id="selectCloudIncomeUser" resultType="BigDecimal">
+        SELECT SUM(settlement_income) as btcYesterday
+        FROM
+        t_income
+        WHERE income_type = 2 AND TO_DAYS(CURRENT_DATE) = TO_DAYS(create_time) AND user_id = #{userId}
+    </select>
+
+    <select id="selectCountCloudIncomeUser" resultType="BigDecimal">
+        SELECT SUM(settlement_income)
+        FROM
+        t_income
+        WHERE income_type = 2  AND user_id = #{userId}
+    </select>
+
+    <select id="selectFinancialIncomeUser" resultType="BigDecimal">
+        SELECT SUM(money) as cnyYesterday
+        FROM
+        t_income
+        WHERE income_type = 3 AND TO_DAYS(CURRENT_DATE) = TO_DAYS(create_time) AND user_id = #{userId}
+    </select>
+
+    <select id="selectCloudIncomeList" resultType="com.ant.entity.Income">
+        SELECT income_id,user_id,SUM(settlement_income) AS settlement_income,DATE_SUB(create_time,INTERVAL 1 DAY) AS create_time
+        FROM t_income
+        WHERE income_type = 2 AND user_id = #{userId}
+        GROUP BY create_time
+        ORDER BY create_time
+    </select>
+
+    <select id="selectFinancialIncomeList" resultType="com.ant.entity.Income">
+        SELECT * FROM t_income
+        WHERE income_type = 3 AND user_id = #{userId}
+    </select>
+
+    <select id="selectFrozenIncomeUser" resultType="BigDecimal">
+        SELECT SUM(o.actual_receipts+o.maturity_income) AS frozen_income
+        FROM
+        t_order o
+        LEFT JOIN t_financial_product f ON f.product_id = o.product_id
+        WHERE o.order_type = 3 AND o.order_status = 2 AND o.user_id = #{userId}
+    </select>
+
+</mapper>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>我要提现 - 麒麟云算</title>
+	<meta name="keywords" content="麒麟云算" />
+	<meta name="description" content="麒麟云算" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="author" content="pennychen" />
+	<meta name="Copyright" content="麒麟云算" />
+	<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+	<meta http-equiv="Cache-Control" content="no-transform" />
+	<meta http-equiv="Cache-Control" content="no-siteapp" />
+	<link type="text/css" rel="stylesheet" href="css/style.css" />
+	<!--<link type="text/css" rel="stylesheet" href="css/mmenu.css" />-->
+
+	<script src="js/app.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript" src="js/vue.min.js"></script>
+	<script src = "js/sweetalert.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src = "js/lodash.min.js" type="text/javascript" charset="utf-8"></script>
+	<!--动画-->
+	<script src="js/wow.min.js"></script>
+	<link href="css/animate.css" rel='stylesheet' type='text/css' />
+	<script>
+		new WOW().init();
+	</script>
+
+</head>
+
+
+
+
+<body class="cbp-spmenu-push">
+<div id="page" v-cloak>
+
+	<!--header-->
+    <div id="header">
+		<div class="logo">我要提现</div>
+	</div>
+	<!--header end-->
+
+
+
+	<!--交易记录-->
+	<div class="conbox">
+
+		<!--tab-->
+		<script language="JavaScript" src="js/tab.js" type="text/javascript"></script>
+		<div class="Menubox">
+		<ul>
+            <li class="hover" style="background: #FF0000;color: #fff;font-size: 14px">BTC提现</li>
+			<!--<li id="one1" onClick="setTab('one',1,2)" class="hover">BTC提现</li>-->
+			<!--<li id="one2" onClick="setTab('one',2,2)" >CNY提现</li>-->
+		</ul>
+		</div>
+
+		<!--1-->
+		<div id="con_one_1" class="me_con" style="display:block;">
+			<div class="tabconbox">
+
+				<div class="drawal_2">
+
+					<div class="stats_3 stats_tx">
+						<h2>{{account.btcBalance}} BTC<p>可提现金额</p></h2>
+						<h2>{{account.btcPresent}} BTC<p>提现中金额</p></h2>
+					</div>
+
+					<div class="account">提现方式：</div>
+
+					<div class="account"><a href="add_btc_attr_2.html">数字钱包设置</a></div>
+                    <div v-show="!showList" id="isshow" class="account">钱包地址：<span>{{addr}}</span></div>
+					<div class="bf">
+						<label>提现金额：（收取0.5%矿工费）</label>
+						<input type="text" name="name" class="box1" value="" v-model = "btcTrue"/>
+						<label><font color="red">{{btcMsg}}</font></label>
+					</div>
+					<div class="pay_tips">
+						<p>余额：{{account.btcBalance}}BTC<a @click="allBtc">全部提现</a></p>
+					</div>
+
+
+					<div class="record_btn"><a class="yew" @click="addBtcPutForward">立即提交</a></div>
+
+
+					<link rel="stylesheet" href="css/jquery-labelauty.css">
+					<script src="js/form/jquery-labelauty.js"></script>
+					<script>
+						$(function(){
+							$(':input').labelauty();
+						});
+					</script>
+				</div>
+
+			</div>
+		</div>
+		<!--end 1-->
+
+		<!--2-->
+		<!--<div id="con_one_2" class="me_con" style="display:block;">-->
+			<!--<div class="tabconbox">-->
+
+			    <!--<div class="drawal_2">-->
+
+					<!--<div class="stats_3 stats_tx">-->
+						<!--<h2>{{account.cnyBalance}}元<p>可提现金额</p></h2>-->
+						<!--<h2>{{account.cnyPresent}}元<p>提现中金额</p></h2>-->
+					<!--</div>-->
+
+					<!--<div class="account">提现方式：</div>-->
+
+					<!--<div class="account"><a href="add_card.html">银行卡设置</a></div>-->
+
+					<!--<div class="bf">-->
+						<!--<label>提现金额：</label>-->
+						<!--<input type="text" name="name" class="box1" value="" v-model = "cny"/>-->
+						<!--<label><font color="red">{{cnyMsg}}</font></label>-->
+					<!--</div>-->
+					<!--<div class="pay_tips">-->
+						<!--<p>余额：{{account.cnyBalance}}元<a @click="allCny">全部提现</a></p>-->
+					<!--</div>-->
+
+					<!--<div class="record_btn"><a class="yew" @click="addCnyPutForward">立即提交</a></div>-->
+
+					<!--<link rel="stylesheet" href="css/jquery-labelauty.css">-->
+					<!--<script src="js/form/jquery-labelauty.js"></script>-->
+					<!--<script>-->
+						<!--$(function(){-->
+							<!--$(':input').labelauty();-->
+						<!--});-->
+					<!--</script>-->
+				<!--</div>-->
+
+			<!--</div>-->
+		<!--</div>-->
+		<!--end 2-->
+
+
+	</div>
+	<!--交易记录 end-->
+
+
+
+	<!--footer-->
+	<div class="footer">
+		<div class="links"></div>
+		麒麟云算 &nbsp; All Rights Reserved. <br /><a href="http://www.miitbeian.gov.cn/">粤ICP备17090461号 </a>
+	</div>
+	<!--footer end-->
+
+
+	<!--导航-->
+	<ul class="nav_b">
+		<li><a class="icon_01" href="index.html">首页</a></li>
+		<!--<li><a class="icon_02" href="rent.html">租赁</a></li>-->
+		<li><a class="icon_03" href="mall.html">购买</a></li>
+		<li><a class="icon_05" href="personal.html">我</a></li>
+	</ul>
+
+
+</div>
+
+<script stype="text/javascript" src="js/modules/record_tx.js"></script>
+</body>
+</html>

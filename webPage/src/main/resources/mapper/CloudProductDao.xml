@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ant.webPage.dao.CloudProductDao">
+
+    <select id="findList" resultType="com.ant.entity.CloudProduct">
+        SELECT
+        cloud.*,product.*,c.category_name
+        FROM
+        t_cloud_product cloud
+        LEFT JOIN t_product product ON cloud.product_id = product.product_id
+        LEFT JOIN t_category c on c.category_id = product.category_id
+        <where>cloud.del_flag = 0 and product.show_in_shelve = 1</where>
+    </select>
+
+    <select id="selectByProductId" resultType="com.ant.entity.CloudProduct">
+        SELECT
+        cloud.*,product.*,c.category_name
+        FROM
+        t_cloud_product cloud
+        LEFT JOIN t_product product ON cloud.product_id = product.product_id
+        LEFT JOIN t_category c on c.category_id = product.category_id
+        <where>cloud.product_id = #{productId} and cloud.del_flag = 0</where>
+    </select>
+
+    <select id="findFirst" resultType="com.ant.entity.CloudProduct">
+        SELECT
+        cloud.*,product.*,c.category_name
+        FROM
+        t_cloud_product cloud
+        LEFT JOIN t_product product ON cloud.product_id = product.product_id
+        LEFT JOIN t_category c on c.category_id = product.category_id
+        where cloud.del_flag = 0 and product.show_in_shelve = 1 order by cloud.sort limit 1
+    </select>
+
+</mapper>

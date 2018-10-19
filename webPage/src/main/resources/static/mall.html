@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>商城 - 麒麟云算</title>
+    <meta name="keywords" content="麒麟云算"/>
+    <meta name="description" content="麒麟云算"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="author" content="pennychen"/>
+    <meta name="Copyright" content="麒麟云算"/>
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <meta http-equiv="Cache-Control" content="no-transform"/>
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <link type="text/css" rel="stylesheet" href="css/style.css"/>
+    <!--<link type="text/css" rel="stylesheet" href="css/mmenu.css" />-->
+
+    <script src="js/app.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="js/template-native.js"></script>
+    <script type="text/javascript" src="js/vue.min.js"></script>
+    <!--动画-->
+    <script src="js/wow.min.js"></script>
+    <link href="css/animate.css" rel='stylesheet' type='text/css'/>
+    <script>
+		new WOW().init();
+
+    </script>
+
+</head>
+
+
+<body class="cbp-spmenu-push">
+<div id="page" v-cloak>
+
+    <!--header-->
+    <div id="header">
+        <div class="logo">云算力商城</div>
+    </div>
+    <!--header end-->
+
+
+    <!--热门-->
+    <div class="hotpro">
+        <div class="rent_con" v-for="cloudProduct in cloudProductList">
+            <div class="j_list">
+                <div class="jimg"><a @click="clickBuy(cloudProduct.productId)"><img class="lazy"
+                                                                                    v-bind:src="cloudProduct.picImg"
+                                                                                    alt="S9i云算力"/></a></div>
+                <div class="jtx">
+                    <h1><a @click="clickBuy(cloudProduct.productId)">{{cloudProduct.productName}}</a></h1>
+                    <p>售价：{{cloudProduct.retailPrice}}元/T</p>
+                    <p>库存：{{cloudProduct.stock}}T</p>
+                </div>
+                <div class="salary"><a @click="clickBuy(cloudProduct.productId)">购买</a></div>
+            </div>
+        </div>
+
+        <!--<div class="page">
+            <div class="next"><a href="#">查看更多</a></div>
+        </div>-->
+    </div>
+    <!--热门 end-->
+
+    <!--瀑布流JS-->
+    <script src="js/pubu/jquery.lazyload.min.js"></script>
+    <script src="js/pubu/blocksit.min.js"></script>
+    <script>
+			$(function(){
+				$("img.lazy").lazyload({
+					load:function(){
+						$('#content').BlocksIt({
+							numOfCol:1, //每行显示图片个数
+							offsetX: 0,
+							offsetY: 0
+						});
+					}
+				});
+				$(window).scroll(function(){
+						// 当滚动到最底部以上50像素时， 加载新内容
+					if ($(document).height() - $(this).scrollTop() - $(this).height()<50){
+						$('#content').BlocksIt({
+							numOfCol:1, //每行显示图片个数
+							offsetX: 0,
+							offsetY: 0
+						});
+						$("img.lazy").lazyload();
+					}
+				});
+			});
+
+    </script>
+    <!--end 瀑布流JS-->
+
+
+    <!--微信-->
+    <div class="index_wx">
+        <h1>麒麟云算力</h1>
+        <img src="images/wx.png" alt=""/>
+    </div>
+    <!--end 微信-->
+
+
+    <!--footer-->
+    <div class="footer">
+        <div class="links"></div>
+        麒麟云算 &nbsp; All Rights Reserved. <br/><a href="http://www.miitbeian.gov.cn/">粤ICP备17090461号 </a>
+    </div>
+    <!--footer end-->
+
+
+    <!--导航-->
+    <ul class="nav_b">
+        <li><a class="icon_01" href="index.html">首页</a></li>
+        <!--<li><a class="icon_02" href="rent.html">租赁</a></li>-->
+        <li><a class="icon_03" href="mall.html">购买</a></li>
+        <li><a class="icon_05" href="personal.html">我</a></li>
+    </ul>
+
+
+</div>
+
+<script stype="text/javascript" src="js/modules/mall.js"></script>
+</body>
+</html>

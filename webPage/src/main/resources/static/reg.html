@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>注册-麒麟云算</title>
+	<meta name="keywords" content="麒麟云算" />
+	<meta name="description" content="麒麟云算" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="author" content="pennychen" />
+	<meta name="Copyright" content="麒麟云算" />
+	<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+	<meta http-equiv="Cache-Control" content="no-transform" />
+	<meta http-equiv="Cache-Control" content="no-siteapp" />
+	<link type="text/css" rel="stylesheet" href="css/style.css" />
+	<!--<link type="text/css" rel="stylesheet" href="css/mmenu.css" />-->
+
+	<script src="js/app.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript" src="js/vue.min.js"></script>
+	<script src = "js/sweetalert.min.js" type="text/javascript" charset="utf-8"></script>
+	<!--动画-->
+	<script src="js/wow.min.js"></script>
+	<link href="css/animate.css" rel='stylesheet' type='text/css' />
+	<script>
+		new WOW().init();
+	</script>
+
+</head>
+
+
+
+
+<body>
+<div id="page" v-cloak>
+
+	<!--header-->
+    <div id="header">
+		<div class="logo">麒麟云算</div>
+	</div>
+	<!--header end-->
+
+
+	<!--登录注册-->
+	<div class="conbox_login">
+
+		<div class="login_box">
+			<ul class="login_ul">
+				<li><input type="text" class="phone" placeholder="请输入手机号码" v-model="phone" maxlength="11"/></li>
+				<li><input type="password" class="password" placeholder="设置登录密码，6-16位数字或字母" v-model="password" minlength="6" maxlength="16"/></li>
+				<li><input type="text" class="code" placeholder="请输入验证码" v-model="verification" maxlength="6" @keyup.enter="regAndLogin"/><a @click="getSMSCode" class="dxcode">{{sendMsgText}}</a></li>
+				<li><input type="text" class="code" placeholder="邀请码或者推荐人手机（选填）" v-model="invitationCode" @keyup.enter="regAndLogin"/></li>
+				<li><input class="login_btn wow bounceIn" type="button" value="注册并登录" @click="regAndLogin"/></li>
+				<li><input class="reg_btn_2" type="button" value="忘记密码？" onClick="location.href='forget_password.html'" /></li>
+			</ul>
+
+				<link rel="stylesheet" href="css/jquery-labelauty.css">
+				<script src="js/form/jquery.min.js"></script>
+				<script src="js/form/jquery-labelauty.js"></script>
+				<script>
+					$(function(){
+						$(':input').labelauty();
+					});
+				</script>
+
+		</div>
+	</div>
+	<!--登录注册 end-->
+
+
+
+	<!--footer-->
+	<div class="footer">
+		<div class="links"></div>
+		麒麟云算 &nbsp; All Rights Reserved. <br /><a href="http://www.miitbeian.gov.cn/">粤ICP备17090461号 </a>
+	</div>
+	<!--footer end-->
+
+
+	<!--导航-->
+	<ul class="nav_b">
+		<li><a class="icon_01" href="index.html">首页</a></li>
+		<!--<li><a class="icon_02" href="rent.html">租赁</a></li>-->
+		<li><a class="icon_03" href="mall.html">购买</a></li>
+		<li><a class="icon_05" href="personal.html">我</a></li>
+	</ul>
+
+
+</div>
+
+<script type="text/javascript" src="js/modules/reg.js"></script>
+</body>
+</html>

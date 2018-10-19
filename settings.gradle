@@ -1,0 +1,6 @@
+rootProject.name = '70pool'
+include 'admin'
+include 'webPage'
+include 'entity'
+include 'common'
+

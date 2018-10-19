@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.ant.admin.dao.CurrencyPriceDao" >
+    <select id="selectCurrencyPriceList" resultType="com.ant.entity.CurrencyPrice">
+        SELECT *
+        FROM
+        t_currency_price
+        <where> 1=1 ${ew.sqlSegment}</where>
+    </select>
+</mapper>

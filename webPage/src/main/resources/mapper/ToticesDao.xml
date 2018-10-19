@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ant.webPage.dao.ToticesDao">
+
+    <select id="findList"  resultType="com.ant.entity.Totices">
+        select * from t_totices
+    </select>
+
+    <select id="selectOneById"  resultType="com.ant.entity.Totices">
+        select t.*,s.user_name from t_totices t
+        left join t_sys_user s on s.user_id = t.publish_user
+        where totices_id = #{toticesId}
+    </select>
+
+</mapper>
