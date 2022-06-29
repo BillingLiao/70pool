@@ -20,6 +20,9 @@ Thumbs.db
 .idea
 *.iml
 
+# gradle #
+.gradle
+
 # Package Files #
 *.jar
 *.war

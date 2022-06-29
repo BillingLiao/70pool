@@ -1,0 +1,152 @@
+<html> 
+    <head>
+        <title>云算力产品</title>
+        <#include "/header.html">
+        <link rel="stylesheet" href="${request.contextPath}/statics/plugins/fileinput/fileinput.css">
+        <link rel="stylesheet" href="${request.contextPath}/statics/css/addcss.css">
+        <script src="${request.contextPath}/statics/plugins/fileinput/fileinput.js"></script>
+        <script src="${request.contextPath}/statics/plugins/fileinput/zh.js"></script> 
+    </head> 
+    <body>
+        <div id="rrapp" v-cloak="">
+            <div v-show="showList" class="panel panel-default">
+                <div class="panel-heading">
+                    {{title}}
+                </div>
+                <form class="form-horizontal" method="post" id="uploadForm" enctype="multipart/form-data" style="width:90%;">
+                    <div class="form-group">
+                        <div class="col-sm-2 control-label">产品名称</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="cloudProduct.productName" placeholder="产品名称"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-2 control-label">售价</div>
+                        <div class="col-sm-10">
+                            <input type="number" class="form-control" v-model="cloudProduct.retailPrice" placeholder="售价"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-2 control-label">单价（元）</div>
+                        <div class="col-sm-10">
+                            <input type="number" class="form-control" v-model="cloudProduct.price" placeholder="单价(元)"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-2 control-label">服务费（元）</div>
+                        <div class="col-sm-10">
+                            <input type="number" class="form-control" v-model="cloudProduct.managementExpense" placeholder="服务费(元)"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-2 control-label">库存(T)</div>
+                        <div class="col-sm-10">
+                            <input type="number" class="form-control" v-model="cloudProduct.stock" placeholder="库存"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-2 control-label">机型</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="cloudProduct.model" placeholder="机型"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-2 control-label">额定算力</div>
+                        <div class="col-sm-10">
+                            <input type="number" class="form-control" v-model="cloudProduct.rated" placeholder="额定算力"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-2 control-label">功耗</div>
+                        <div class="col-sm-10">
+                            <input type="number" class="form-control" v-model="cloudProduct.powerWaste" placeholder="功耗"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-2 control-label">电费</div>
+                        <div class="col-sm-10">
+                            <input type="number" class="form-control" v-model="cloudProduct.electricityFees" placeholder="电费"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-2 control-label">预计日收益</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="cloudProduct.remark" placeholder="预估日收益"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-2 control-label">起投单位(T)</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="cloudProduct.startStep" placeholder="起投单位"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-2 control-label">本期开售时间</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="cloudProduct.saleTime" placeholder="本期开售时间"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-2 control-label">电源</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="cloudProduct.power" placeholder="电源"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-2 control-label">合同周期</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="cloudProduct.contractCycle" placeholder="合同周期"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-2 control-label">排序</div>
+                        <div class="col-sm-10">
+                            <input type="number" class="form-control" v-model="cloudProduct.sort" placeholder="排序"/>
+                        </div>
+                    </div>
+                    <!--  上传图片start-->
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="exampleInputName2">商品缩略图</label>
+                    </div>
+                    <div class="form-group" id="picimg">
+                        <div class="file-loading col-sm-10"  >
+                            <input id="input-7021" name="files" type="file"  data-min-file-count="1">
+                        </div>
+                    </div>
+                    <!--  上传图片end-->
+                    <div class="form-group">
+                        <div class="col-sm-2 control-label">产品介绍</div>
+                        <div class="col-sm-10">
+                            <!--<textarea class="layui-textarea" id="LAY_demo1" style="display: none">
+                            </textarea>-->
+                            <div id="editor" style="width: 710px;">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-2 control-label">创建时间</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="cloudProduct.createAt" placeholder="创建时间"
+                                   readonly="readonly"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-2 control-label">更新时间</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="cloudProduct.updateAt" placeholder="更新时间"
+                                   readonly="readonly"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-2 control-label"></div>
+                        <input type="button" class="btn btn-primary" @click="saveOrUpdate" value="确定"/>
+                        &nbsp;&nbsp;<input type="button" class="btn btn-warning" @click="reload" value="返回"/>
+                    </div>
+                </form> 
+            </div>
+        </div>
+        <script type="text/javascript" src="https://unpkg.com/wangeditor@3.1.1/release/wangEditor.min.js"></script>
+        <script src="${request.contextPath}/statics/js/modules/product/sort.js?_${.now?long}"></script>
+    </body>
+
+</html>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ant.admin.dao.OrderDao">
+
+    <select id="selectOrderList" resultType="com.ant.entity.Order">
+        SELECT
+        o.*,c.category_name
+        FROM
+        t_order o
+        LEFT JOIN t_product product ON o.product_id = product.product_id
+        LEFT JOIN t_category c ON c.category_id = product.category_id
+        <where> 1=1 and o.del_flag = 0 ${ew.sqlSegment}</where>
+    </select>
+    <update id="updateTypeByTime">
+        UPDATE t_order o LEFT JOIN t_financial_product f ON f.product_id = o.product_id
+        SET o.order_status = 5,o.`completion_time` = CURRENT_DATE
+        WHERE o.order_type = 3 AND TO_DAYS(CURRENT_DATE)-TO_DAYS(o.payment_time) = f.cycle+1;
+    </update>
+
+    <select id="selectByTime" resultType="com.ant.entity.Order">
+        SELECT o.*
+        FROM
+        t_order o
+        LEFT JOIN t_financial_product f ON f.product_id = o.product_id
+        WHERE o.order_type = 3 AND TO_DAYS(CURRENT_DATE)-TO_DAYS(o.payment_time) = f.cycle+1;
+    </select>
+
+    <!--<select id="selectByProductId" resultType="com.ant.admin.dto.CloudProduct">
+        SELECT
+        cloud.*,product.*,c.category_name
+        FROM
+        t_cloud_product cloud
+        LEFT JOIN t_product product ON cloud.product_id = product.product_id
+        LEFT JOIN t_category c on c.category_id = product.category_id
+        <where>cloud.product_id = #{productId} and cloud.del_flag = 0</where>
+    </select>-->
+
+</mapper>

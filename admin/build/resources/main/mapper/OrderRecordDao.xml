@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ant.admin.dao.OrderRecordDao">
+
+    <insert id="insertRecord">
+        INSERT INTO t_order_record(order_id,order_status,create_time)
+        SELECT o.order_id,5, NOW() FROM
+        t_order o LEFT JOIN t_financial_product f ON f.product_id = o.product_id
+        WHERE o.order_type = 3 AND TO_DAYS(CURRENT_DATE)-TO_DAYS(o.payment_time) = f.cycle+1;
+    </insert>
+
+</mapper>

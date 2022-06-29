@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.ant.admin.dao.IncomeDao" >
+
+    <insert id="insertCloudIncomeList">
+        INSERT INTO t_income(user_id,income_type,electricity_fees,theoretical_income,pure_income,settlement_income,return_cycle,create_time)
+        SELECT o.user_id AS user_id,o.order_type AS income_type,
+        c.electricity_fees*c.power_waste*24/c.rated/(SELECT btc_cny FROM t_currency_price ORDER BY price_id DESC LIMIT 0,1) AS electricity_fees,
+        (SELECT tstimate FROM t_tstimate ORDER BY tstimate_id DESC LIMIT 0,1) AS theoretical_income,
+        (SELECT tstimate FROM t_tstimate ORDER BY tstimate_id DESC LIMIT 0,1)*o.amount AS pure_income,
+        CASE WHEN ((SELECT tstimate FROM t_tstimate ORDER BY tstimate_id DESC LIMIT 0,1)-(c.electricity_fees*c.power_waste*24/c.rated/(SELECT btc_cny FROM t_currency_price ORDER BY price_id DESC LIMIT 0,1)))*o.amount &lt;= 0 THEN 0
+        ELSE ((SELECT tstimate FROM t_tstimate ORDER BY tstimate_id DESC LIMIT 0,1)-(c.electricity_fees*c.power_waste*24/c.rated/(SELECT btc_cny FROM t_currency_price ORDER BY price_id DESC LIMIT 0,1)))*o.amount END AS settlement_income,
+        CASE WHEN o.actual_receipts/(SELECT btc_cny FROM t_currency_price ORDER BY price_id DESC LIMIT 0,1)/(((SELECT tstimate FROM t_tstimate ORDER BY tstimate_id DESC LIMIT 0,1)-(c.electricity_fees*c.power_waste*24/c.rated/(SELECT btc_cny FROM t_currency_price ORDER BY price_id DESC LIMIT 0,1)))*o.amount) &lt;= 0 THEN 0
+        ELSE o.actual_receipts/(SELECT btc_cny FROM t_currency_price ORDER BY price_id DESC LIMIT 0,1)/(((SELECT tstimate FROM t_tstimate ORDER BY tstimate_id DESC LIMIT 0,1)-(c.electricity_fees*c.power_waste*24/c.rated/(SELECT btc_cny FROM t_currency_price ORDER BY price_id DESC LIMIT 0,1)))*o.amount) END AS return_cycle,
+        CURRENT_DATE AS create_time
+        FROM t_order o
+        LEFT JOIN t_cloud_product c ON c.product_id = o.product_id
+        WHERE o.order_type = 2 AND o.order_status = 2 AND TO_DAYS(CURRENT_DATE)-TO_DAYS(o.payment_time)>=2;
+    </insert>
+
+    <insert id="insertFinancialIncomeList">
+        INSERT INTO t_income(user_id,income_type,money,create_time)
+        SELECT o.user_id AS user_id,o.order_type AS income_type,
+        o.actual_receipts*f.reward_rate/360/100 AS money,
+        CURRENT_DATE AS create_time
+        FROM t_order o
+        LEFT JOIN t_financial_product f ON f.product_id = o.product_id
+        WHERE o.order_type = 3 AND TO_DAYS(CURRENT_DATE)-TO_DAYS(o.payment_time)>=2 AND TO_DAYS(CURRENT_DATE)-TO_DAYS(o.payment_time) &lt; f.cycle+2;
+    </insert>
+
+    <select id="selectCloudIncomeList" resultType="com.ant.entity.Income">
+        SELECT *
+        FROM
+        t_income
+        WHERE income_type = 2 AND TO_DAYS(CURRENT_DATE) = TO_DAYS(create_time)
+    </select>
+
+</mapper>
